@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>CPNV-ES Informatique Developpement</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <!--    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
+  <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+  <!-- amCharts javascript sources -->
+  <script type="text/javascript" src="scripts/amcharts.js"></script>
+  <script type="text/javascript" src="scripts/pie.js"></script>
+
+
+<style>
+
+body {
+      font: 15px Montserrat, sans-serif;
+      line-height: 1.8;
+      color: #f5f6f7;
+  }
+
+
+p {
+    font-size: 15px;
+    text-align: left;
+  }
+
+ul{
+    text-align: left;
+    }
+
+
+#titre {
+    padding-bottom: 10px;
+    font-size: 35px;
+    color:white;
+    text-align:left;
+    }
+
+
+.bg-1 {
+    position:relative;
+    background-color: rgba(207, 44, 38,.8);
+    color: #ffffff;
+    padding-top:90px;
+    padding-bottom:20px;
+    padding-left:20px;
+    }
+
+.bg-2 {
+    position:relative;
+    background-color: rgb(207, 44, 38);
+    background-position: left center;
+    color: #555555;
+
+    }
+
+.bg-planf {
+    position:relative;
+    background-image: url("Images/server_3.jpg");
+    background-size:300%;
+    background-position: left top;
+    color: #555555;
+    padding-top:0px;
+    }
+
+
+.bg-pieg{
+    position:relative;
+    background-color:rgba(255, 255, 255,.7);
+    background-image: url("Images/code_3.jpg");
+    background-size:400%;
+    background-position: left center;
+    color: #555555;
+    padding-top:0px;
+    }
+
+.bg-3 {
+    background-image: url("Images/server_1_hdr.jpg");
+    background-size:300%;
+    background-position: top center;
+    background-color: #ffffff; /* White */
+    color: #555555;
+
+  }
+
+.bg-4 {
+    background-color: #2f2f2f; /* Black Gray */
+    color: #555555;
+  }
+
+
+#block-header{
+    padding:20px;
+    padding-top:100px;
+    text-align:left;
+   }
+
+.container-fluid {
+    padding-left:0px;
+    padding-right:0px;
+  }
+
+.box,.whitebox,.notitlebox{
+    overflow:hidden;
+    background:#efefef;
+    padding:20px;
+    padding-top:100px;
+    display:block;
+    margin:0px;
+    margin-top:5px;
+
+    }
+
+.whitebox{
+    background:rgba(255, 255, 255,.9);
+    }
+
+
+.notitlebox{
+    padding-top:20px;
+}
+
+.box h3{position:absolute;
+    top:0px;
+    left:10px;
+    padding:10px;
+    padding-left:20px;
+    background:rgb(207, 44, 38);
+    color:white;
+}
+
+
+.fondblanc{background:rgba(255, 255, 255);}
+.fondrouge {background:rgba(207, 44, 38, .7); color:white;}
+
+
+.box:hover >img{opacity:0.9;}
+
+.divimage img{
+    position:relative;
+    width:80%;
+    }
+
+.divimage{
+    position:relative;
+    width:80%;
+    margin: auto;
+    text-align:center;
+    opacity:1;
+    }
+
+.box > #btnPlanf{
+    position:absolute;
+    bottom:0px;
+    right:0px;
+    padding:10px;
+    color:white;
+    cursor:pointer;
+    font-size:12px;
+    background-color: rgba(207, 44, 38,.95);
+    }
+
+.box > #btnPlanf:hover{
+    text-decoration: underline;
+    }
+
+.navbar {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    font-size: 16px;
+    letter-spacing: 5px;
+    background:#f2f2f2;
+    }
+
+#logo{
+        position:absolute;
+        top:20px;
+        left:10px;
+        width:200px;
+    }
+
+.navbar-nav li a{
+    //color: #c1c0c0 !important;
+    }
+
+.navbar-nav  li a:hover {
+    color: white !important;
+    }
+
+#screengauche,#screencentre,#screendroite{visibility:hidden;}
+
+
+.titre_annee{ margin:10px;
+    padding-top:20px;
+    font-size:20px;
+    font-weight:bold;
+    text-align:center;
+    display:block;
+    }
+
+.trimestre{
+    padding:10px;
+    }
+
+
+.module{
+    background-color: rgb(207, 44, 38);
+    color:white;
+    height:100px;
+    display:block;
+    border:1px solid #938976;
+    padding:10px;
+    }
+
+.module:hover{
+    background:#938976;
+    }
+
+.stage{
+    background:#938976;
+    height:400px;
+    }
+
+.parallaxParent {
+   width:100%;
+	height:100%;
+	position:relative;
+	overflow:hidden;
+    color: #555555;
+}
+
+.parallaxBg {
+    height: 200%;
+    display:block;
+    position: absolute;
+    top: -100%;
+}
+
+
+
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="contaiiner">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"><img id="logo" src="imgs/logo-cpnv%20-es.svg"></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+
+          <li><a href="#">FORMATIONS</a></li>
+        <li><a href="#">ENTREPRISES</a></li>
+           <li><a href="#">INSCRIPTION</a></li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<!-- Header -->
+
+<div  class="parallaxParent">
+
+<div  class="container-fluid bg-3 col-lg-12 col-md-12 col-xs-12 parallaxBg">  </div>
+
+<div class=" col-lg-12 container-fluid">
+
+
+<div class="col-lg-2 col-lg-offset-3 col-md-3 col-md-offset-2 col-sm-4 col-sm-offset-1 text-center container-fluid" >
+
+
+<div id="block-header" class="bg-1">
+<svg version="1.1" id="codeAscreen" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" width="200px" height="150px" viewBox="-120 87.1 150 130"  xml:space="preserve">
+<g id="formes" fill="none" stroke="white" stroke-width="4" stroke-linejoin="round">
+<path id="codegauche" class="drawme" d="M-69.4,114.1l-4.4,2.9l-33.3,20.8l-3.9,2.3v17.7l3.9,2.3l33.3,20.8l4.4,2.9V164L-93.5,149l24.2-15.1
+	C-69.4,133.9-69.4,114.1-69.4,114.1z"/>
+<path id="codecentre" class="drawme" d="M-44.7,99.1L-61,197.5l-0.3,1.3h17.1l16.4-98.5l0.3-1.3C-27.5,99.1-44.7,99.1-44.7,99.1z"/>
+<path id="codedroite" class="drawme" d="M-18.6,134L-18.6,134l24.2,15.1l-24.2,15.1v19.7l4.4-2.9L19,160.2l3.9-2.3v-17.7l-3.9-2.3l-33.3-20.8
+	l-4.4-2.9V134z"/>
+<path id="screengauche" d="M-65.9,140.6h-35.7c-0.8,0-1.5,0.7-1.5,1.5v43c0,0.8,0.7,1.5,1.5,1.5h35.7c0.8,0,1.5-0.7,1.5-1.5v-43
+	C-64.4,141.2-65.1,140.6-65.9,140.6z M-88.3,142.2h9c0.3,0,0.7,0.3,0.7,0.7c0,0.3-0.3,0.7-0.7,0.7h-9c-0.3,0-0.7-0.3-0.7-0.7
+	S-88.6,142.2-88.3,142.2z M-83.8,184.9c-1.3,0-2.5-1.2-2.5-2.5c0-1.3,1.2-2.5,2.5-2.5c1.3,0,2.5,1.2,2.5,2.5
+	C-81.3,183.9-82.4,184.9-83.8,184.9z M-66.9,177.2c0,0.7-0.5,1.2-1.2,1.2h-31.3c-0.7,0-1.2-0.5-1.2-1.2v-30.3c0-0.7,0.5-1.2,1.2-1.2
+	h31.3c0.7,0,1.2,0.5,1.2,1.2V177.2z"/>
+<path id="screencentre" d="M-57.9,177.2h11.2c0.7,0,1.2,0.5,1.2,1.2v3.7c0,0.7-0.5,1.2-1,1.2c-6.8,1-11.7,3.2-11.7,5.7
+	c0,3.5,8.8,6.2,19.5,6.2c10.8,0,19.5-2.8,19.5-6.2c0-2.5-4.8-4.7-11.7-5.7c-0.7-0.2-1-0.7-1-1.2v-3.7c0-0.7,0.5-1.2,1.2-1.2h17.2
+	c0.8,0,1.5-0.7,1.5-1.5v-3.7c0-0.8-0.7-1.5-1.5-1.5h-44.3c-0.8,0-1.5,0.7-1.5,1.5v3.7C-59.4,176.4-58.7,177.2-57.9,177.2z
+	 M-0.7,105.1h-76.3c-5.2,0-9.3,4.2-9.3,9.3v20.2c0,0.7,0.5,1,1,1h4.5c0.7,0,1-0.5,1-1v-19c0-2.2,1.8-4,4-4h73.7c2.2,0,4,1.8,4,4
+	v32.8c0,0.7,0.5,1,1,1h4.5c0.7,0,1-0.5,1-1v-34.2C8.6,109.2,4.4,105.1-0.7,105.1z"/>
+<path id="screendroite" d="M13.9,154.4H-5.9c-0.7,0-1.3,0.7-1.3,1.3v35c0,0.7,0.7,1.3,1.3,1.3h19.8c0.7,0,1.3-0.7,1.3-1.3v-35
+	C15.3,155.1,14.6,154.4,13.9,154.4z M-0.1,155.9h8.2c0.3,0,0.7,0.3,0.7,0.7s-0.3,0.7-0.7,0.7h-8.2c-0.3,0-0.7-0.3-0.7-0.7
+	C-0.7,156.2-0.4,155.9-0.1,155.9z M3.9,190.7c-1.3,0-2.3-1-2.3-2.3c0-1.3,1-2.3,2.3-2.3s2.3,1,2.3,2.3
+	C6.2,189.7,5.3,190.7,3.9,190.7z M12.9,183.6c0,0.5-0.5,1-1,1H-3.9c-0.5,0-1-0.5-1-1v-23.3c0-0.5,0.5-1,1-1h15.8c0.5,0,1,0.5,1,1
+	V183.6z"/>
+    </g>
+</svg>
+
+</div>
+
+<h2 id="titre" >Technicien Informatique Option Développement</h2>
+
+</div>
+
+
+<!-- Blocs description débouchés et formation-->
+
+<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 text-center container-fluid">
+
+<div class="col-lg-12 box whitebox">
+<h3>Débouchés professionnels</h3>
+<p>Les techniciens spécialisés en développement d’applications ont la possibilité de travailler comme développeurs web et/ou logiciel dans une société de développement, une agence ou pour de plus grandes entreprises, ainsi que dans l’administration de serveurs web..</p>
+</div>
+
+    <div class="col-lg-12  box whitebox">
+    <h3>Formation</h3>
+    <p>La formation de type modulaire à plein temps est répartie sur deux ans à plein temps, incluant un stage en entreprise de trois mois et se concluant par un travail de diplôme de 6 semaines, également en entreprise. <br><br>
+    </p>
+    <p>Le découpage de la formation dans le temps se fait par trimestres. Chaque trimestre comporte 8 semaines de cours, suivies d’une semaine d’examens de validation des modules.</p><br>
+
+    Première année :<br>
+    <div class="divimage"><img src="Images/trimestre/formTrimA.png"></div><br><br>
+    Deuxième année :<br>
+    <div class="divimage"><img src="Images/trimestre/formTrimB.png"></div><br>
+
+
+    </div>
+</div>
+</div>
+</div>
+
+
+<!-- Blocs description Stage et Conditions admission -->
+
+<div class="container-fluid bg-4 col-lg-12">
+<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 text-center container-fluid">
+
+
+
+<div class="col-lg-12  box">
+    <h3>Stages en entreprise</h3>
+    <p>Au début de la 2ème année, les étudiants partent en entreprise pour un stage de perfectionnement professionnel d’une durée de 11 semaines. <br>Ils peuvent y appliquer les connaissances et compétences acquises au cours de la 1ère année et y apprendre les fonctionnements internes et spécifiques au monde de l’entreprise.</p>
+</div>
+
+
+
+    <div class="col-lg-12  box">
+    <h3>Conditions d’admission</h3>
+    <p>
+    Cette formation s’adresse aux personnes qui ont terminé avec succès un CFC d’informaticien ou de domaine apparenté (électronicien, médiamaticien, télématicien, automaticien).<br>
+    L’admission a lieu sur la base :<br>
+    - D’un dossier personnel contenant curriculum vitae, copie du CFC ou titre équivalent, bulletin de notes, certificats de travail ainsi qu’une lettre de motivation.<br>
+    - D’un entretien personnel<br>
+    L’admission devient définitive après la réussite du premier semestre d’études.</p>
+
+    </div>
+</div>
+</div>
+
+
+
+<!-- Pie Chart Info Général -->
+
+<div class="parallaxParent">
+<div class="container-fluid bg-pieg col-lg-12 col-md-12 col-xs-12 parallaxBg">  </div>
+<div class="container-fluid col-lg-12">
+<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 text-center container-fluid">
+
+
+     <div class="col-lg-12  box">
+            <h3>Repartition globale du travail</h3>
+            <div id="chartdiv" style="width: 100%; height: 300px; background-color: #FFFFFF; padding-right:20px;" ></div>
+     </div>
+
+     <div id="triggerBraGen" class="col-lg-12"></div>
+
+     <div id="animateBraGen"class="col-lg-12  box">
+            <h3>Branches générales abordées</h3>
+            <p>
+            Correspondent à 1 jour ½ par semaine tout au long de la formation<br>
+            <ul>
+            <li>Mathématiques: Calcul matriciel, Nombres complexes, Dérivées, Intégrales</li>
+            <li>Physique : Mécanique, Chimie, Chaleur</li>
+            <li>Anglais : Débutant et intermédiaire (BEC)</li>
+            <li>Français : Synthèse, résumé, communication, français en entreprise (CV, PV, Note interne)</li>
+            <li>Gestion et organisation : Axé sur la construction d'une PME</li>
+            </ul>
+            </p>
+     </div>
+     </div>
+</div>
+</div>
+
+<!-- Pie Chart Dev-->
+
+<div class="container-fluid bg-2 col-lg-12">
+<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 text-center container-fluid">
+
+
+
+<div  class="col-lg-12  box" style="z-index:100;">
+    <h3>Domaines techniques abordés</h3>
+    <div id="pieDev">
+        <div id="chartdivDev" style="width: 100%; height: 300px; background-color: #FFFFFF; padding-right:20px;"></div>
+    </div>
+</div>
+
+
+
+<div class="col-lg-12 notitlebox" >
+
+    <ul>
+    <li class="brsplit">Ingénierie Web : XHTML, CSS, PHP, JavaScript, RIA, Graphisme (Photoshop, Illustrator)</li>
+    <li class="brsplit">Développement : XML, UML, Java, .NET, Design Patterns, Mobile</li>
+    <li class="brsplit">Base de données : SQL Server, MySQL, Business Intelligence</li>
+    <li class="brsplit">Système: Linux, Firewall, Serveurs Web (Apache, IIS)</li>
+    <li class="brsplit">Modules d’application : Projets techniques de longue durée incluant la gestion de projets ainsi que la conduite d’équipes.</li>
+    </ul>
+
+</div>
+</div>
+</div>
+
+
+<!-- Plan de formation -->
+
+
+<div class="container-fluid bg-planf col-lg-12">
+
+<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 text-center container-fluid">
+
+<div id="triggerPF1an" class="col-lg-12"></div>
+
+<div id="animatePF1an" class="col-lg-12  box">
+
+     <h3>Plan de formation</h3>
+
+    <h4 class="titre_annee">Première année</h4>
+
+<div class="col-lg-3 col-md-6 trimestre">
+        <h4>Trimestre 1</h4>
+     <div class="module" id="i1a">
+         <p>Graphisme Bases</p>
+    </div>
+        <div class="module" id="i1b">
+         <p>Linux WS</p>
+    </div>
+        <div class="module" id="i1c">
+         <p>Html / CSS / JS </p>
+    </div>
+        <div class="module" id="i1d">
+         <p>SQL</p>
+    </div>
+</div>
+
+
+<div class="col-lg-3 col-md-6 trimestre">
+        <h4>Trimestre 2</h4>
+     <div class="module" id="i1a">
+         <p>Graphisme Interface</p>
+    </div>
+        <div class="module" id="i1b">
+         <p>Linux Serveur</p>
+    </div>
+        <div class="module" id="i1c">
+         <p>PHP </p>
+    </div>
+        <div class="module" id="i1d">
+         <p>UML/GIT</p>
+    </div>
+</div>
+
+<div class="col-lg-3 col-md-6 trimestre">
+        <h4>Trimestre 3</h4>
+     <div class="module" id="i1a">
+         <p>XML</p>
+    </div>
+        <div class="module" id="i1b">
+         <p>IIS / Apache</p>
+    </div>
+        <div class="module" id="i1c">
+         <p>Ajax / Rest / Soap </p>
+    </div>
+        <div class="module" id="i1d">
+         <p>ORM/MVC</p>
+    </div>
+</div>
+
+<div class="col-lg-3 col-md-6 trimestre">
+        <h4>Trimestre 4</h4>
+     <div class="module" id="i1a">
+         <p>JAVA</p>
+    </div>
+        <div class="module" id="i1b">
+         <p>Virtualisation Srv mutualisé</p>
+    </div>
+        <div class="module" id="i1c">
+         <p>Mobile (JS,PhoneGap) </p>
+    </div>
+        <div class="module" id="i1d">
+         <p>Design Patterns</p>
+    </div>
+</div>
+
+        </div>
+
+    <div class="col-lg-12"></div>
+
+    <div class="col-lg-12  notitlebox">
+
+    <div class="col-lg-12 col-md-12 titre_annee">Deuxième année</div>
+
+<div class="col-lg-3 col-md-6 trimestre">
+
+        <h4>Trimestre 5</h4>
+     <div class="module stage" id="i1a">
+         <p>STAGE</p>
+    </div>
+</div>
+
+
+<div class="col-lg-3 col-md-6 trimestre" >
+        <h4>Trimestre 6</h4>
+     <div class="module" id="i1a">
+         <p>Graphisme Interface</p>
+    </div>
+        <div class="module" id="i1b">
+         <p>Linux Serveur</p>
+    </div>
+        <div class="module" id="i1c">
+         <p>PHP </p>
+    </div>
+        <div class="module" id="i1d">
+         <p>UML/GIT</p>
+    </div>
+</div>
+
+<div class="col-lg-3 col-md-6 trimestre" >
+        <h4>Trimestre 7</h4>
+     <div class="module" id="i1a">
+         <p>XML</p>
+    </div>
+        <div class="module" id="i1b">
+         <p>IIS / Apache</p>
+    </div>
+        <div class="module" id="i1c">
+         <p>Ajax / Rest / Soap </p>
+    </div>
+        <div class="module" id="i1d">
+         <p>ORM/MVC</p>
+    </div>
+</div>
+
+<div class="col-lg-3 col-md-6 trimestre" >
+        <h4>Trimestre 8</h4>
+     <div class="module stage" id="i1a">
+         <p>Travail de diplôme</p>
+    </div>
+
+</div>
+</div>
+</div>
+</div>
+
+
+<!-- Footer -->
+<footer class="container-fluid bg-4 text-center">
+
+</footer>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.11.1/jquery-ui.js">  </script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="scripts/TweenMax.min.js"></script>
+<script src="scripts/plugins/MorphSVGPlugin.min.js"></script>
+<script src="scripts/plugins/DrawSVGPlugin.min.js"></script>
+<script src="scripts/utils/SplitText.min.js"></script>
+<script src="scripts/ScrollMagic.min.js"></script>
+<script src="scripts/debug.addIndicators.min.js"></script>
+<script src="scripts/animation.gsap.min.js"></script>
+<script src="scripts/cpnvEsInfoPieChartInfo.js"></script>
+<script src="scripts/cpnvEsInfoPieChartDev.js"></script>
+
+
+
+</body>
+</html>
