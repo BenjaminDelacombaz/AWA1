@@ -4,40 +4,31 @@
         <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">      
         <link rel="stylesheet" type="text/css" href="css/style.css">         
         <title>Freeride</title>
+        <meta charset="utf-8"/>
     </head>
     <body>
     <header>
         <div id="title">Freeride</div> Location de vehicules a des prix abordables
     </header>
-    <div id="container">           
-   
-        <div id="menu">
-            <ul>
-                <li class="men-itm">Velo Scott<i class="fa fa-bicycle my-green" aria-hidden="true"></i></li>               
-                <li class="men-itm">Peugeot<i  class="fa fa-car my-orange" aria-hidden="true"></i></li>
-                <li class="men-itm">Bus VW<i  class="fa fa-bus my-red" aria-hidden="true"></i></li>
-                <li class="men-itm">Harley<i  class="fa fa-motorcycle my-darkblue" aria-hidden="true"></i></li>
-            </ul>              
+    <div id="app">
+        <div id="container">           
+            <div id="menu">
+                <ul>
+                    <liste-vehicules v-for="vehicule in vehicules" v-bind:vehicule="vehicule" v-bind:key="vehicule.id"></liste-vehicules>
+                </ul>              
+            </div>
+
+            <div id="contenu">
+                <detail-vehicule v-bind:vehicule="vehicules[0]"></detai-vehicule>
+
+            </div>
         </div>
-
-        <div id="contenu">
-           <div class="animdroite" id="titre">Velo Scott</div>
-           <div class="animdroite" id="introduction">Déplacements en VTT</div>
-           <div class="animdroite" id="image">
-                <img src="images/velo.jpg" width="400px">
-                <i class="fa fa-car my-darkblue" aria-hidden="true"></i>
-           </div>
-           <div class="animdroite" id="description">
-                Créateur et constructeur de la berline électrique Model S et 
-                du SUV électrique Model X, Tesla a ouvert les réservations pour 
-                la Model 3, un véhicule électrique premium à partir de 35 000 $.
-                Tesla produit également une gamme de batteries commerciales et domestiques.
-           </div>
-           <button  class="animdroite" id="reserver">RESERVER</button>
-
-        </div>   
+    </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>   
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>   
+        <script src="vehicules.js"></script>     
+        <script src="js/main.js"></script>
         <script>
          var tl = new TimelineLite();
           tl.pause();
