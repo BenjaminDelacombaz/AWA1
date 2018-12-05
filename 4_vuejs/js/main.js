@@ -2,21 +2,6 @@ Vue.component('listeVehicules', {
     props: ['vehicule'],
     template: '<li class="men-itm" @click="changeVehicule(vehicule.id)">{{ vehicule.titre }}<i :class="getIconFromCat(vehicule.cat)" aria-hidden="true"></i></li>',
     methods: {
-        getIconFromCat (catName) {
-            switch (catName) {
-                case 'velo':
-                    return 'fa fa-bicycle my-green'
-                
-                case 'voiture':
-                    return 'fa fa-car my-orange'
-
-                case 'moto':
-                    return 'fa fa-motorcycle my-darkblue'
-
-                case 'van':
-                    return 'fa fa-bus my-red'
-            }
-        },
         changeVehicule (id) {
             const tl = new TimelineLite();
             tl.add(TweenMax.staggerTo(".animdroite",.4, {x:300, autoAlpha: 0, ease:Power1.easeIn, onComplete: () => {
@@ -26,6 +11,9 @@ Vue.component('listeVehicules', {
             $(".men-itm").mouseup( function() {         
                 tl.restart();        
             })
+        },
+        getIconFromCat(cat) {
+            return this.$parent.getIconFromCat(cat)
         }
     }
 })
@@ -40,6 +28,19 @@ Vue.component('detailVehicule', {
     </div>
     <div class="animdroite" id="description">{{ vehicules[selected].description }}</div>
     <button  class="animdroite" id="reserver">RESERVER</button></div>`,
+    methods: {
+        getIconFromCat(cat) {
+            return this.$parent.getIconFromCat(cat)
+        }
+    }
+})
+
+var app = new Vue({
+    el: '#app',
+    data: {
+        vehicules: listeVehicules,
+        selected: 0
+    },
     methods: {
         getIconFromCat (catName) {
             switch (catName) {
@@ -56,13 +57,5 @@ Vue.component('detailVehicule', {
                     return 'fa fa-bus my-red'
             }
         }
-    }
-})
-
-var app = new Vue({
-    el: '#app',
-    data: {
-        vehicules: listeVehicules,
-        selected: 0
     }
 })
