@@ -52,6 +52,13 @@ Vue.component('detailVehicule', {
 var app = new Vue({
     el: '#app',
     data: {
-        vehicules: listeVehicules
+        vehicules: listeVehicules,
+        vehicule: listeVehicules[0]
+    },
+    methods: {
+        setVehicule(id) {
+            alert('tutu')
+            this.vehicule = this.vehicules[id]
+        }
     }
 })

@@ -14,12 +14,12 @@
         <div id="container">           
             <div id="menu">
                 <ul>
-                    <liste-vehicules v-for="vehicule in vehicules" v-bind:vehicule="vehicule" v-bind:key="vehicule.id"></liste-vehicules>
+                    <liste-vehicules v-for="vehicule in vehicules" v-bind:vehicule="vehicule" v-bind:key="vehicule.id" v-on:click="setVehicule(vehicule.id)"></liste-vehicules>
                 </ul>              
             </div>
 
             <div id="contenu">
-                <detail-vehicule v-bind:vehicule="vehicules[0]"></detai-vehicule>
+                <detail-vehicule v-bind:vehicule="vehicule"></detai-vehicule>
 
             </div>
         </div>
