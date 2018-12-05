@@ -14,12 +14,12 @@
         <div id="container">           
             <div id="menu">
                 <ul>
-                    <liste-vehicules v-for="vehicule in vehicules" v-bind:vehicule="vehicule" v-bind:key="vehicule.id" v-on:click="setVehicule(vehicule.id)"></liste-vehicules>
+                    <liste-vehicules v-for="vehicule in vehicules" v-bind:vehicule="vehicule" v-bind:key="vehicule.id" @click="selected=$event"></liste-vehicules>
                 </ul>              
             </div>
 
             <div id="contenu">
-                <detail-vehicule v-bind:vehicule="vehicule"></detai-vehicule>
+                <detail-vehicule :vehicules="vehicules" :selected="selected"></detai-vehicule>
 
             </div>
         </div>
@@ -29,13 +29,4 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>   
         <script src="vehicules.js"></script>     
         <script src="js/main.js"></script>
-        <script>
-         var tl = new TimelineLite();
-          tl.pause();
-          tl.add(TweenMax.staggerTo(".animdroite",.4, {x:300, autoAlpha: 0, ease:Power1.easeIn},0.02));
-          tl.add(TweenMax.staggerTo(".animdroite",1, {x:0, autoAlpha: 1, ease:Power4.easeOut},0.03));         
-          $(".men-itm").mousedown( function() {         
-             tl.restart();        
-         })
-        </script>
     </body>

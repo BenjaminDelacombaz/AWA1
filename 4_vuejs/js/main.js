@@ -1,6 +1,6 @@
 Vue.component('listeVehicules', {
     props: ['vehicule'],
-    template: '<li class="men-itm">{{ vehicule.titre }}<i :class="getIconFromCat(vehicule.cat)" aria-hidden="true"></i></li>',
+    template: '<li class="men-itm" @click="changeVehicule(vehicule.id)">{{ vehicule.titre }}<i :class="getIconFromCat(vehicule.cat)" aria-hidden="true"></i></li>',
     methods: {
         getIconFromCat (catName) {
             switch (catName) {
@@ -16,19 +16,29 @@ Vue.component('listeVehicules', {
                 case 'van':
                     return 'fa fa-bus my-red'
             }
+        },
+        changeVehicule (id) {
+            const tl = new TimelineLite();
+            tl.add(TweenMax.staggerTo(".animdroite",.4, {x:300, autoAlpha: 0, ease:Power1.easeIn, onComplete: () => {
+                this.$emit('click', id)
+                tl.add(TweenMax.staggerTo(".animdroite",1, {x:0, autoAlpha: 1, ease:Power4.easeOut},0.03));
+            }},0.02));
+            $(".men-itm").mouseup( function() {         
+                tl.restart();        
+            })
         }
     }
 })
 
 Vue.component('detailVehicule', {
-    props: ['vehicule'],
-    template: `<div><div class="animdroite" id="titre">{{ vehicule.titre }}</div>
-    <div class="animdroite" id="introduction">{{ vehicule.introduction }}</div>
+    props: ['vehicules', 'selected'],
+    template: `<div><div class="animdroite" id="titre">{{ vehicules[selected].titre }}</div>
+    <div class="animdroite" id="introduction">{{ vehicules[selected].introduction }}</div>
     <div class="animdroite" id="image">
-        <img :src="vehicule.image" width="400px">
-        <i :class="getIconFromCat(vehicule.cat)" aria-hidden="true"></i>
+        <img :src="vehicules[selected].image" width="400px">
+        <i :class="getIconFromCat(vehicules[selected].cat)" aria-hidden="true"></i>
     </div>
-    <div class="animdroite" id="description">{{ vehicule.description }}</div>
+    <div class="animdroite" id="description">{{ vehicules[selected].description }}</div>
     <button  class="animdroite" id="reserver">RESERVER</button></div>`,
     methods: {
         getIconFromCat (catName) {
@@ -53,12 +63,6 @@ var app = new Vue({
     el: '#app',
     data: {
         vehicules: listeVehicules,
-        vehicule: listeVehicules[0]
-    },
-    methods: {
-        setVehicule(id) {
-            alert('tutu')
-            this.vehicule = this.vehicules[id]
-        }
+        selected: 0
     }
 })
